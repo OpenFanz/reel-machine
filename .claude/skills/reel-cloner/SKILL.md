@@ -37,8 +37,8 @@ Read the contact sheet (open single frames where detail matters) and note, right
   Python) · `scripts/diarize-speakers.sh` for voice-based speaker labels (advanced).
 
 ### 4 · Write the per-second package → `reels/<slug>/prompt.txt`
-**Load the `seedance-master` skill and follow it exactly** — its `references/package-spec.md` (the uniform
-block structure) + `references/shapes.md` (pick the matching shape: solo monologue, duet selfie, duet POV,
+**Load the `seedance-master` skill and follow it exactly** — its package-spec reference (the uniform block
+structure) + its shapes reference (pick the matching shape: solo monologue, duet selfie, duet POV,
 woman×woman, CTA, action). The three laws: every second timed · every line tagged with speaker + gender +
 on/off-cam · identity from refs only. (Fallback if seedance-master is missing: `references/examples.md`.)
 
