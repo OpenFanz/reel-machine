@@ -37,7 +37,8 @@ scene-lock lines ([POSE]/[CAMERA]/[WALLS]/…) · NEGATIVE
 ```
 
 ## PACING — the trick that makes it human, not AI
-From the teardown's word timing: match the **word budget + pause structure** of the original.
+From the teardown's timing (frame-based ~1s beats by default; word-level if Whisper was run): match the
+**word budget + pause structure** of the original.
 - **Fewer words = SLOWER** (the model stretches the rest). Too many words → it rushes to cram them; cut words.
 - **Hero dialogue** keeps pauses between lines ("each line lands, then a beat of silence"). ~half the clip can be silence.
 - **CTA / one person** = the opposite: ONE flowing sentence, no gaps, normal conversational pace.

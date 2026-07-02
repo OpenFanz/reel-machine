@@ -3,7 +3,7 @@
 Take a reel that's **already going viral**, rebuild it in **Seedance 2.0** with **your own AI model** — same
 face, same body, every time. Runs inside **Claude Code**; you type English, Claude fires the generations.
 
-## What you get — 2 skills (run in order)
+## What you get — 2 skills (run in order, they live in `.claude/skills/` and load automatically when you open Claude Code in this folder)
 1. **`reel-intake`** — drop a viral reel + link → Claude downloads it, extracts every frame, and *watches* it to understand exactly how it's built.
 2. **`seedance-prompter`** — Claude writes the full per-second Seedance 2.0 prompt from the reel's format + your model's reference images, fires the generation, and self-checks the draft. Out comes your reel.
 
