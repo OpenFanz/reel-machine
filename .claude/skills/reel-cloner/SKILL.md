@@ -37,9 +37,10 @@ Read the contact sheet (open single frames where detail matters) and note, right
   Python) · `scripts/diarize-speakers.sh` for voice-based speaker labels (advanced).
 
 ### 4 · Write the per-second package → `reels/<slug>/prompt.txt`
-Mirror `references/examples.md` (shape A: hero dialogue with real pauses · shape B: CTA one flowing sentence).
-Blocks: SETUP · RULE · IMAGE REFERENCE MAP · PROMPT (scene + outfit + LENS + camera, ONE continuous take) ·
-PACING · DIALOGUE + PER-SECOND TIMELINE (S/O, pauses as intentional silence) · SECTIONS 1–4 · scene-locks · NEGATIVE.
+**Load the `seedance-master` skill and follow it exactly** — its `references/package-spec.md` (the uniform
+block structure) + `references/shapes.md` (pick the matching shape: solo monologue, duet selfie, duet POV,
+woman×woman, CTA, action). The three laws: every second timed · every line tagged with speaker + gender +
+on/off-cam · identity from refs only. (Fallback if seedance-master is missing: `references/examples.md`.)
 
 **Hard rules (bake into every package):**
 1. **Never describe the person** — identity comes ONLY from the reference images ("the woman from the
