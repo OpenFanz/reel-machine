@@ -42,5 +42,5 @@ ARGS=(--prompt-file "$PKG" --out "$OUT" --res "$RES" --dur "$DUR")
 [ -n "$VOICE" ] && ARGS+=(--voice "$VOICE")
 "$WSVID" "${ARGS[@]}" "${REFS[@]}"
 echo "✓ $OUT"
-[ "$TAG" = draft ] && echo "  → watch clip-draft.mp4 (identity/pacing/pose/tone). Good? re-run with --final."
-[ "$TAG" = final ] && echo "  → last step: upscale clip-final.mp4 to 1080x1920 with Topaz Video AI."
+if [ "$TAG" = draft ]; then echo "  → watch clip-draft.mp4 (identity/pacing/pose/tone). Good? re-run with --final."
+else echo "  → last step: upscale clip-final.mp4 to 1080x1920 with Topaz Video AI."; fi
