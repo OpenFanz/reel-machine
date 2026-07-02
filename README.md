@@ -3,10 +3,14 @@
 Take a reel that's **already going viral**, rebuild it in **Seedance 2.0** with **your own AI model** — same
 face, same body, every time. Runs inside **Claude Code**; you type English, Claude fires the generations.
 
-## What you get — ONE skill, start to finish
-**`reel-cloner`** — drop in a reel (file or link) and name your model. Claude downloads it, extracts every
-frame, *watches* it, writes the full per-second Seedance 2.0 prompt, fires the generation on WaveSpeed,
-self-checks the draft, and finalizes at 720p. One sentence in, one reel out.
+## What you get — 2 skills (they load automatically when you open Claude Code in this folder)
+1. **`reel-intake`** — give it a reel LINK (it downloads it) or drop the FILE in. It extracts every single
+   frame + a contact sheet, pulls the word-timed transcript, verifies who speaks each line, and *watches*
+   the reel to write the teardown — the rebuild blueprint.
+2. **`seedance-prompter`** — the master prompting skill. Reads the teardown + your model's reference images,
+   writes the uniform per-second Seedance 2.0 package (every second timed, every line tagged with speaker +
+   gender + on/off-cam, 6 shapes from solo UGC to duets, 6 lens looks incl. the GoPro porthole), fires the
+   generation on WaveSpeed and self-checks the draft. 480p draft → ONE 720p final → Topaz to 1080×1920.
 
 **You bring your model's reference images** (4–6 consistent shots, in `characters/<name>/refs/`). Don't have a
 consistent model yet? Building one is the `_skool/character-builder` bonus (that's the "owned asset" part).

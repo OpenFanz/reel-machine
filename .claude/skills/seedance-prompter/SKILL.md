@@ -1,12 +1,12 @@
 ---
-name: seedance-master
-description: THE master prompting skill for Seedance 2.0 AI-OFM reels — writes the uniform, per-second-timed prompt package for ANY reel type: solo UGC monologue, dialogue duets (woman+man, woman+woman), CTA talking-heads, POV or selfie camera, even no-dialogue action clips. Every second is timed, every line is tagged with speaker + gender + on/off-cam. Use whenever a Seedance prompt, video prompt, reel clip prompt, UGC clip, dialogue scene, or CTA clip must be written. Triggers: "seedance prompt", "write the clip prompt", "make her say", "UGC clip", "dialogue reel", "CTA clip", "reel prompt".
+name: seedance-prompter
+description: Step 2 of the Reel Machine — THE master prompting skill for Seedance 2.0 AI-OFM reels. Writes the uniform, per-second-timed prompt package for ANY reel type (solo UGC monologue, dialogue duets woman+man or woman+woman, CTA talking-heads, POV or selfie camera, no-dialogue action), then fires the generation on WaveSpeed and self-checks the draft. Every second is timed, every line is tagged with speaker + gender + on/off-cam. Triggers: "seedance prompt", "clone the reel with my model", "write the clip prompt", "make her say", "UGC clip", "dialogue reel", "CTA clip", "generate the reel", after reel-intake.
 ---
 
-# seedance-master
+# seedance-prompter
 
-Writes ONE uniform prompt package for a continuous 4–15s Seedance 2.0 clip (WaveSpeed). Same structure every
-time — only the content changes. Covers EVERY AI-OFM reel type via the shape library.
+Writes ONE uniform prompt package for a continuous 4–15s Seedance 2.0 clip (WaveSpeed) — then generates it.
+Same structure every time, only the content changes. Covers EVERY AI-OFM reel type via the shape library.
 
 **The three laws (never break):**
 1. **Every second is timed.** The PER-SECOND TIMELINE accounts for all 15s — every line, every pause, every
@@ -18,7 +18,8 @@ time — only the content changes. Covers EVERY AI-OFM reel type via the shape l
 
 ## Inputs
 - The model's refs: `characters/<name>/refs/` (4–6, face first; outfit via prompt + 1–2 outfit refs).
-- What the clip is: a teardown (from reel-cloner), a script line, or just an idea ("she pranks him in the car").
+- What the clip is: a teardown from `reel-intake` (`intake/<slug>/teardown.md` + `words.json`), a script
+  line, or just an idea ("she pranks him in the car").
 - If pacing should copy a reference reel: its beat timing (frames = seconds, or word timestamps).
 
 ## Workflow
@@ -41,8 +42,16 @@ time — only the content changes. Covers EVERY AI-OFM reel type via the shape l
      or `[SILENCE + what she does]`). CTAs/monologue-pitches are the opposite: ONE flowing breath-group, no gaps.
    - Connect fragments ("…but you didn't") — short isolated lines sound the most AI.
    - Give each voice a steer: "smooth young female voice" / "calm low male voice" — and keep them DISTINCT.
-6. **Generate** (draft → final): reel-cloner's `clone.sh`, or paste into WaveSpeed manually. 480p draft
-   (~$1.50) → fix via the bug→fix table in `references/settings-lock.md` → ONE 720p final (~$3) → Topaz to 1080×1920.
+6. **Generate** (draft → check → final):
+   ```
+   scripts/clone.sh --name <model> --package reels/<slug>/prompt.txt            # 480p draft (~$1.50)
+   ```
+   WATCH the draft (extract a contact sheet if needed) — identity holds? timing matches? voices right?
+   pose held? Fix bugs via the bug→fix table in `references/settings-lock.md`, re-draft (2–4 runs max), then:
+   ```
+   scripts/clone.sh --name <model> --package reels/<slug>/prompt.txt --final    # ONE 720p final (~$3)
+   ```
+   → upscale to 1080×1920 with Topaz Video AI. Never generate at 1080p/4k.
 
 ## Hard scene rules (bake into every package)
 - **LENS is part of the look:** fisheye/ultra-wide + dark rounded vignette if the reference has it; otherwise
