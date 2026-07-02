@@ -3,9 +3,10 @@
 Take a reel that's **already going viral**, rebuild it in **Seedance 2.0** with **your own AI model** — same
 face, same body, every time. Runs inside **Claude Code**; you type English, Claude fires the generations.
 
-## What you get — 2 skills (run in order, they live in `.claude/skills/` and load automatically when you open Claude Code in this folder)
-1. **`reel-intake`** — drop a viral reel + link → Claude downloads it, extracts every frame, and *watches* it to understand exactly how it's built.
-2. **`seedance-prompter`** — Claude writes the full per-second Seedance 2.0 prompt from the reel's format + your model's reference images, fires the generation, and self-checks the draft. Out comes your reel.
+## What you get — ONE skill, start to finish
+**`reel-cloner`** — drop in a reel (file or link) and name your model. Claude downloads it, extracts every
+frame, *watches* it, writes the full per-second Seedance 2.0 prompt, fires the generation on WaveSpeed,
+self-checks the draft, and finalizes at 720p. One sentence in, one reel out.
 
 **You bring your model's reference images** (4–6 consistent shots, in `characters/<name>/refs/`). Don't have a
 consistent model yet? Building one is the `_skool/character-builder` bonus (that's the "owned asset" part).
@@ -34,8 +35,8 @@ You need: Claude Code, a [WaveSpeed](https://wavespeed.ai) account + API key (pa
 ```
 
 ## No-install fallback
-Don't want to install anything? Use the **`no-install/`** folder — the same 2 skills for Claude Desktop:
-Claude writes the prompts, you paste them into the WaveSpeed website (wavespeed.ai). Slower, but zero setup.
+Don't want to install anything? Let Claude write the prompts and paste them into the WaveSpeed website
+(wavespeed.ai) yourself. Slower, but zero setup.
 
 > Tools you don't own the rights to (a creator's face/voice, copyrighted audio) are for FORMAT study only —
 > rebuild the *structure* with your own model and your own/licensed audio. Never republish someone else's file.
