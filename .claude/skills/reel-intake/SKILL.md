@@ -14,15 +14,23 @@ exact lines, or their file.
 - **Output (in `intake/<slug>/`):** `reference.mp4` · `frames/` (1 per second) · `contact-sheet.jpg` ·
   `transcript.txt` + `words.json` (word-level timing) · `teardown.md` (the rebuild blueprint).
 
+## First run on any machine — check what's installed (bulletproof rule)
+Before the first intake (and whenever a step fails), run `scripts/doctor.sh` and SHOW the user the result:
+what's [OK], what's [MISSING], and the exact install command for their OS (mac/windows/linux). Only
+**ffmpeg** is truly required; yt-dlp auto-installs for links; whisper is optional (frames carry a fallback).
+Never fail silently — always tell the user what the machine is missing and how to fix it in one command.
+
 ## Steps
 
-### 1 · Get the reel (two ways — never let a blocked download stop the run)
+### 1 · Get the reel (three tiers — never let a blocked download stop the run)
 - **User gave a FILE** (path or drag-in): use it directly — copy it to `intake/<slug>/reference.mp4`,
   keep the original link (if any) for the teardown. No download needed.
-- **User gave a LINK:** run `scripts/download.sh` with `--url <link> --slug <YYYY-MM-DD-slug>` (yt-dlp —
-  TikTok, YouTube Shorts, most public Instagram). **If the platform blocks it** (private account, login
-  wall): say so, ask the user to save the reel via any reel-downloader site and drop the `.mp4` in — then
-  continue exactly as with a given file.
+- **User gave a LINK — tier 1:** run `scripts/download.sh` with `--url <link> --slug <YYYY-MM-DD-slug>`
+  (yt-dlp). Works logged-out for YouTube Shorts, often for TikTok.
+- **Tier 2 (Instagram needs this):** IG blocks logged-out downloads. ASK the user first, then re-run with
+  `--browser chrome` (or safari/firefox/edge) — yt-dlp uses their own logged-in browser session.
+- **Tier 3 (always works):** the user saves the reel via any reel-downloader website and drops the `.mp4`
+  in — then continue exactly as with a given file. A blocked download is a fork in the road, not an error.
 
 ### 2 · Extract EVERY frame
 ```
@@ -51,6 +59,15 @@ Read the contact sheet, open single frames where detail matters, and write the b
   camera height?), setting, light, color character — the prompter needs the LOOK named precisely.
 - **Why it went viral:** the *mechanic* in one sentence (e.g. call-out hook → withhold → debatable twist →
   comment bait).
+
+## Windows / agents without bash
+The scripts run in **Git Bash** (bundled with Git for Windows — if `git` exists, bash exists:
+`"C:\Program Files\Git\bin\bash.exe" scripts/extract-frames.sh …`). No bash at all? Run the equivalents
+directly — the output contract stays the same (`intake/<slug>/` with the files above):
+- Download: `yt-dlp -f "mp4/bestvideo*+bestaudio/best" --merge-output-format mp4 -o intake/<slug>/reference.mp4 <link>` (+ `--cookies-from-browser chrome` for IG)
+- Frames: `ffmpeg -i reference.mp4 -vf fps=1 intake/<slug>/frames/frame-%03d.png`
+- Contact sheet: `ffmpeg -i reference.mp4 -vf "fps=1,scale=320:-1,tile=4x4" intake/<slug>/contact-sheet.jpg`
+- Transcript: `whisper reference.mp4 --model small --word_timestamps True --output_format all --output_dir intake/<slug>`
 
 ## The teardown is the handoff
 `seedance-prompter` reads `teardown.md` + `words.json` to set the word budget, pause structure, beat map,

@@ -16,6 +16,12 @@ Same structure every time, only the content changes. Covers EVERY AI-OFM reel ty
    Never let the model guess who speaks — that's how a duet collapses into one voice (proven failure v4).
 3. **Identity from reference images ONLY.** Never describe the person. Scene + outfit + lens only.
 
+## First run on any machine — check what's installed (bulletproof rule)
+Before the first GENERATION (writing packages needs nothing), run `scripts/doctor.sh` and SHOW the user
+what's [OK] / [MISSING] with the exact install command for their OS. Missing pieces? The user can still get
+the full prompt package and paste it into wavespeed.ai manually — never block on a missing tool, offer the
+manual path. On Windows the scripts run in Git Bash (`"C:\Program Files\Git\bin\bash.exe" scripts/clone.sh …`).
+
 ## Inputs
 - The model's refs: `characters/<name>/refs/` (4–6, face first; outfit via prompt + 1–2 outfit refs).
 - What the clip is: a teardown from `reel-intake` (`intake/<slug>/teardown.md` + `words.json`), a script
