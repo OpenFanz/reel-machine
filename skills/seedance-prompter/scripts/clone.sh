@@ -20,6 +20,20 @@ REFDIR="$CHARS/$NAME/refs"
 REFS=()
 while IFS= read -r f; do REFS+=("$f"); done < <(ls "$REFDIR"/*.png "$REFDIR"/*.jpg 2>/dev/null | head -6)
 [ "${#REFS[@]}" -ge 1 ] || { echo "no reference images in $REFDIR — put your model's 4–6 refs there first (no consistent model yet? that's the Character Builder — link in the video description)" >&2; exit 1; }
+
+# Auto-shrink oversized refs (>4MB aborts the WaveSpeed upload). Identity survives 2048px fine.
+OPT="$(mktemp -d)"; i=0
+for f in "${REFS[@]}"; do
+  sz=$(wc -c < "$f" | tr -d ' ')
+  if [ "$sz" -gt 4000000 ]; then
+    out="$OPT/ref-$i.jpg"
+    if command -v sips >/dev/null 2>&1; then sips -Z 2048 -s format jpeg -s formatOptions 90 "$f" --out "$out" >/dev/null 2>&1
+    elif command -v ffmpeg >/dev/null 2>&1; then ffmpeg -nostdin -loglevel error -y -i "$f" -vf "scale='min(2048,iw)':-2" -q:v 3 "$out"
+    else out="$f"; fi
+    [ -f "$out" ] && REFS[$i]="$out" && echo "  (shrunk oversized ref: $(basename "$f"))" >&2
+  fi
+  i=$((i+1))
+done
 TAG_UP="$(printf '%s' "$TAG" | tr '[:lower:]' '[:upper:]')"
 echo "→ $TAG_UP @ $RES · model=$NAME · ${#REFS[@]} refs$([ -n "$VOICE" ] && echo " · voice ref")" >&2
 
