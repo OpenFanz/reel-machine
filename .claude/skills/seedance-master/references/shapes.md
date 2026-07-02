@@ -96,7 +96,8 @@ PREFLIGHT + COST/RISK: per package-spec. Trigger line = the deadpan reveal.
 
 ## C · DUET — POV (the OTHER person holds the phone; her hands free) — proven: street-corner reveal V5
 
-Differs from B in the camera + a quiet-beat structure (SHE goes silent while HE reacts):
+Differs from B in the camera + a quiet-beat structure (SHE goes silent while HE reacts). Lens = look #1
+(GoPro porthole) from `looks.md` — this shape almost always pairs with it:
 ```
 PROMPT (camera/lens part):
 … shot on an ULTRA-WIDE FISHEYE phone lens (GoPro-style), STRONG fisheye barrel distortion with a DARK

@@ -28,16 +28,20 @@ time — only the content changes. Covers EVERY AI-OFM reel type via the shape l
    - **SELFIE:** she holds the phone, her one raised arm in frame (never a second arm near the lens).
    - **POV:** the OTHER person holds it — their single sleeve/forearm enters one frame corner; her hands are FREE.
    - **THIRD:** nobody in frame holds it (friend/tripod) — say so explicitly.
-3. **Write the package** into `reels/<slug>/prompt.txt` following `references/package-spec.md` — every block,
+3. **Pick the LOOK** from `references/looks.md` — GoPro porthole (strong fisheye + dark rounded vignette),
+   phone selfie, DV camcorder, webcam, CCTV, third-person rear-cam. Match the reference reel's lens: check
+   the frames for corner darkness, line bowing, camera height, color character. What you don't name, the
+   model averages away.
+4. **Write the package** into `reels/<slug>/prompt.txt` following `references/package-spec.md` — every block,
    same order, every time.
-4. **Time the dialogue** (the pacing engine):
+5. **Time the dialogue** (the pacing engine):
    - Word budget: match the reference (or ~35–45 words per 15s duet, ~25 words per 8s CTA).
    - **Fewer words = SLOWER = human.** Model rushes to cram; cut words instead.
    - Duets keep PAUSES between lines (up to half the clip is intentional silence — mark each `[pause ~0.4]`
      or `[SILENCE + what she does]`). CTAs/monologue-pitches are the opposite: ONE flowing breath-group, no gaps.
    - Connect fragments ("…but you didn't") — short isolated lines sound the most AI.
    - Give each voice a steer: "smooth young female voice" / "calm low male voice" — and keep them DISTINCT.
-5. **Generate** (draft → final): reel-cloner's `clone.sh`, or paste into WaveSpeed manually. 480p draft
+6. **Generate** (draft → final): reel-cloner's `clone.sh`, or paste into WaveSpeed manually. 480p draft
    (~$1.50) → fix via the bug→fix table in `references/settings-lock.md` → ONE 720p final (~$3) → Topaz to 1080×1920.
 
 ## Hard scene rules (bake into every package)

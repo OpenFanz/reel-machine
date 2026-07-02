@@ -16,7 +16,8 @@ IMAGE REFERENCE MAP
 
 PROMPT   (one continuous paragraph, always in this internal order)
   1. Clip type + duration + aspect ("A continuous 15-second vertical 9:16 …")
-  2. THE LENS ("ultra-wide fisheye with dark rounded vignette" / "mild wide-angle selfie distortion")
+  2. THE LENS — paste a preset from `looks.md` (GoPro porthole / phone selfie / DV camcorder / webcam /
+     CCTV / third-person rear-cam); match the reference reel's lens
   3. CAMERA HOLDER — exactly one (selfie arm / other person's single sleeve in one corner / third party)
   4. Scene + environment + light (time of day, practicals, background motion)
   5. Identity line: "Build her exact face, body and identity from the reference images and keep them
