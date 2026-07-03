@@ -19,11 +19,12 @@ consistent model yet? Building one is the `_skool/character-builder` bonus (that
 **Identity comes ONLY from reference images — never from words.** You never describe your model's face/hair/body
 in a prompt (that causes drift). You describe the *outfit* and the *scene*; her identity is carried by the refs.
 
-## Setup (once, ~2 min)
-```bash
-./setup.sh          # installs the WaveSpeed CLI, checks jq + ffmpeg, logs you in
-```
-You need: Claude Code, a [WaveSpeed](https://wavespeed.ai) account + API key (pay-per-generation, no subscription).
+## Setup (once, ~3 min) — full guide in [INSTALL.md](INSTALL.md)
+- **Mac/Linux:** `./setup.sh` — installs the WaveSpeed CLI, checks jq + ffmpeg, logs you in.
+- **Windows:** `winget install Git.Git OpenJS.NodeJS.LTS Gyan.FFmpeg jqlang.jq` → `npm i -g @wavespeed/cli` → `wavespeed login`.
+- Unsure what's missing? The skills check your machine themselves (doctor scripts) and tell you exactly what to install.
+
+You need: Claude Code (or any AI agent — see INSTALL.md), a [WaveSpeed](https://wavespeed.ai) account + API key (pay-per-generation, no subscription).
 **One key does both the images (Nano Banana Pro) and the videos (Seedance 2.0).**
 
 ## Cost (WaveSpeed, pay per generation)
